@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace SoftUnitFundamentalsFinalExam
+{
+    class Program
+    {
+        private static string casint;
+
+        static void Main(string[] args)
+        {
+            //SoftUnitFundamentalsFinalExam02DestinationMapper
+
+            string pattern = @"(=|\/)([A-Z][A-Za-z]{2,})\1";
+            Regex regePattern = new Regex(pattern);
+
+            string text = Console.ReadLine();
+
+            int sum = 0;
+
+            MatchCollection matchInText = regePattern.Matches(text);
+
+            foreach (Match item in matchInText)
+            {
+                sum += item.Groups[2].Length;
+            }
+            Console.WriteLine($"Destinations: {String.Join(", ", matchInText.Select(x=>x.Groups[2].ToString()))}");
+            Console.WriteLine($"Travel Points: {sum}");
+
+            //
+        }
+
+    }
+}
